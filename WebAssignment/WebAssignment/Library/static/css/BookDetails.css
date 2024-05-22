@@ -22,7 +22,7 @@ body {
     max-width: 400px;
     border: 4px;
     background-color: #e9efef;
-    height: 80vh;
+    height: 50vh;
     margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
@@ -45,7 +45,7 @@ body {
     border-color: #507783;
     padding: 10px;
     max-width: 600px;
-    height: 100vh;
+    height: 75vh;
     margin: 0 auto;
     border-radius: 15px;
 }

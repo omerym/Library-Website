@@ -10,7 +10,7 @@
     {% load static %}
     <script src="{%static 'js/bookLoader.js'%}"></script>
 </head>
-    <body style="background-color: #dad8d8 ">
+<body style="background-color: #dad8d8 ">
     <ul class="navbar">
         <li class="navbar"><a class="navbar" href="/">Home</a></li>
         <li class="navbar"><a class="navbar" href="/addbook">New Book</a></li>
@@ -21,18 +21,19 @@
         <li class="navbar"><a class="navbar" href="/register">Registor</a></li>
     </ul><br />
     <div id="BookBlock">
-    <div id = "contactId"></div>
-    <input type="text" id="title">
-    <h2 id="by"> written by</h2>
-    <input type="text" id="author">
-    <br/>
-    <h2 id="what">category:</h2>
-    <input type="text" id="catogery">
-    <textarea id="description"></textarea>
-    <button id="edit">Edit book info</button>
+        <div id="contactId"></div>
+        <input type="text" id="title" />
+        <h2 id="by"> written by</h2>
+        <input type="text" id="author" />
+        <br />
+        <h2 id="what">category:</h2>
+        <input type="text" id="catogery" />
+        <textarea id="description"></textarea>
+        <button id="edit">Edit book info</button>
     </div>
+    <div id="error">Book not found!</div>
     <script>
-        loadBook();
+        loadBookEdit();
     </script>
 </body>
 </html>

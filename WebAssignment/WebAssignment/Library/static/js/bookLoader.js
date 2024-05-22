@@ -90,7 +90,7 @@ function remove() {
 function goToEdit() {
 
     const id = getId();
-    window.location.href = `/editbook?${id}`;
+    window.location.href = `/editbook?id=${id}`;
 }
 function borrow() {
     const id = getId();
@@ -118,6 +118,25 @@ function loadBook() {
             document.getElementById("author").innerHTML = b.author;
             document.getElementById("catogery").innerHTML = b.catogery;
             document.getElementById("description").innerHTML =b.description;
+            return;
+        }
+    }
+    document.getElementById('BookBlock').style.display = 'none';
+    document.getElementById('error').style.display = '';
+} function loadBookEdit() {
+    const id = getId();
+    books = JSON.parse(localStorage.getItem('books'));
+    if (books == null) {
+        return;
+    }
+    for (b of books) {
+        if (b.id == id) {
+            document.getElementById('BookBlock').style.display = '';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById("title").value = b.name;
+            document.getElementById("author").value = b.author;
+            document.getElementById("catogery").value = b.catogery;
+            document.getElementById("description").value = b.description;
             return;
         }
     }
