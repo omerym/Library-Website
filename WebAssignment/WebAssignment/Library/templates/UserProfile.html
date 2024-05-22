@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/Profile.css'%}">
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/background.css'%}" />
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/book.css'%}" />
+</head>
+<body>
+    <ul class="navbar">
+        <li class="navbar"><a class="navbar" href="/">Home</a></li>
+        <li class="navbar" name="Admin"><a class="navbar" href="/addbook">New Book</a></li>
+        <li class="navbar"><a class="navbar" href="/About.html">about</a></li>
+        <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
+        <li class="navbar-active" name="any"><a class="navbar" href="/user">Profile</a></li>
+
+    </ul><br />
+    <div id="contactId"></div>
+    <p id="username" class="username">temp user name (<span class="role">guest</span>)</p>
+    <ul class="UserPrivilege">
+        <li name="User" class="rolefunctionArea"><button onclick="loadBorrowedBooks()" class="rolefunction">Owned books</button></li>
+        <li class="rolefunctionArea"><button class="rolefunction" onclick="window.location.href='EditProfile.html'">Edit profile</button></li>
+        <div class="BookList" id="books"></div>
+    </ul>
+    {% load static %}
+    <script src="{%static 'js/bookLoader.js'%}"></script>
+    {% load static %}
+    <script src="js{%static '/ProfileScript.js'%}"></script>
+    {% load static %}
+    <script src="{%static 'js/content.js'%}"></script>
+</body>
+</html>

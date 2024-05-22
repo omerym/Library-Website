@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/navbar.css'%}">
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/EditProfile.css'%}">
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/background.css'%}" />
+</head>
+<body>
+    <ul class="navbar">
+        <li class="navbar"><a class="navbar" href="/">Home</a></li>
+        <li class="navbar" name="Admin"><a class="navbar" href="/addbook">New Book</a></li>
+        <li class="navbar"><a class="navbar" href="/about">About</a></li>
+        <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
+        <li class="navbar-active" name="any"><a class="navbar" href="/user">Profile</a></li>
+
+    </ul><br />
+    <div id="contactId"></div>
+    <img src="../css/images/NoProfile.png" alt="user profile pic">
+    <p class="edit">New Profile Picture</p>
+    <input type="file" class="directory" />
+    <p class="username">New User Name</p>
+    <textarea class="info" rows="1" cols="20"></textarea>
+    <p class="username">New Password</p>
+    <textarea class="info" rows="1" cols="20"></textarea>
+    <div class="descriptionArea"><textarea class="description" rows="4" cols="50"></textarea></div>
+    <button class="confirmation" onclick="window.location.href='/user'">Confirm</button>
+
+    {% load static %}
+    <script src="{%static 'js/content.js'%}"></script>
+
+
+</body>
+</html>

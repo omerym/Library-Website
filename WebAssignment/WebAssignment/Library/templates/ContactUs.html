@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/navbar.css'%}" />
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/contact-us.css'%}" />
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/background.css'%}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <ul class="navbar">
+        <li class="navbar"><a class="navbar" href="/">Home</a></li>
+        <li class="navbar" name="Admin"><a class="navbar" href="/addbook">New Book</a></li>
+        <li class="navbar"><a class="navbar" href="/about">About</a></li>
+        <li class="navbar-active"><a class="navbar" href="/contactus">Contact Us</a></li>
+        <li class="navbar" name="any"><a class="navbar" href="/user">Profile</a></li>
+        <li name="unsigned" class="navbar"><a class="navbar" href="/login">Login</a></li>
+        <li name="unsigned" class="navbar"><a class="navbar" href="/register">Registor</a></li>
+        <li name="any" class="navbar"><button onclick="signout()">sign out</button></li>
+        <li class="navbar" style="padding-left: 300px;color: #90d8f9;">EGYPT'S FIRST BOOKSTORE FOR GEEKS</li>
+
+    </ul><br />
+    <!-- <div id ="contactId"></div> -->
+    <h1 style="padding-left: 100px;">
+        Frequently Asked Questions
+    </h1>
+    <div class="dividbytow">
+
+        <div class="right">
+            <div class="cell">
+
+                <ul>
+
+
+                    <li>
+                        <i class="fa-solid fa-angle-down"></i><h2>How can I borrow books from your online store?</h2>
+
+                        <i class="fa-solid fa-angle-up"></i>
+
+                        <p>To borrow books, you need to create an account on our website. Once logged in, you can browse our collection, select the books you want to borrow, and add them to your borrowing queue. We'll then deliver the books to your doorstep!</p>
+                    </li>
+                    <li>
+                        <h2>Do you offer international shipping?</h2>
+                        <p>Currently, we only offer shipping within Egypt. However, we are working on expanding our services to reach readers worldwide in the near future.</p>
+                    </li>
+                    <li>
+                        <h2>What payment methods do you accept?</h2>
+                        <p>We accept various payment methods, including credit/debit cards, bank transfers, and cash on delivery. Choose the option that suits you best during the checkout process.</p>
+                    </li>
+                    <li>
+                        <h2>How can I return borrowed books?</h2>
+                        <p>You can return borrowed books by logging into your account and navigating to the "My Borrowings" section. From there, you can select the books you wish to return and follow the instructions for return.</p>
+                    </li>
+                    <li>
+                        <h2>Can I suggest a book to add to your collection?</h2>
+                        <p>Absolutely! We welcome suggestions from our readers. You can send us your book recommendations through our contact form, and we'll consider adding them to our collection.</p>
+                    </li>
+                </ul>
+                <br>
+
+            </div>
+        </div>
+
+        <div class="left">
+
+            <div class="cell">
+                <h1 style="padding-left: 100px;margin-top: -73px;">
+                    send us email
+
+                </h1>
+
+
+                <form action="submit_form.php" method="post">
+
+                    <label for="first_name">First Name:</label>
+                    <br>
+                    <br>
+                    <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+                    <br> <br>
+                    <label for="last_name">Last Name:</label>
+                    <br><br>
+                    <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
+                    <br><br>
+                    <label for="email">Email:</label>
+                    <br><br>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <br><br>
+
+                    <label for="phone">Phone Number:</label>
+                    <br><br>
+                    <input type="tel" id="phone" name="phone" placeholder="0123456789" required>
+                    <br><br>
+                    <label for="message">Message:</label>
+                    <br><br>
+                    <textarea id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
+                    <br><br>
+                    <input type="submit" value="Submit" class="hh">
+                </form>
+            </div>
+
+        </div>
+    </div>
+    {% load static %}
+    <script src="{%static 'js/content.js'%}"></script>
+</body>
+</html>

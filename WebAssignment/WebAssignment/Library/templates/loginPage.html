@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Next Level Login & Registration Form</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	{% load static %}
+	<link rel="stylesheet" href="{%static 'css/loginPage.css'%}">
+	{% load static %}
+	<script src="{%static 'js/login.js'%}"></script>
+</head>
+<body>
+	<form action="/" onsubmit="login()">
+		<div class="container">
+
+			<div class="form signup">
+
+				<h2>Login</h2>
+
+				<div class="inputBox">
+
+					<input name="username" id="username" type="text" required="required" autocomplete="off">
+
+
+					<i class="fa-regular fa-user"></i>
+
+					<span>username</span>
+
+				</div>
+
+				<div class="inputBox">
+
+					<input name="password" type="password" required="required" autocomplete="off">
+
+					<i class="fa-solid fa-lock"></i>
+
+					<span>Password</span>
+				</div>
+				<button id="loginbutton" type="submit">Log In</button>
+				<p>Don't have an account?  <a href="/registor" class="create">Create New</a></p>
+
+			</div>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+.dividbytow {
+    display : flex;
+    flex-direction : row;
+
+}
+.dividbytow.left.cell{
+    color:white;
+    text-align:justify;
+   
+}
+.dividbytow.right.cell{
+    background:lightgreen;
+    text-align:justify;
+}
+.cell form{
+    padding-right: 332px;
+}
+#first_name,#phone,#email,#last_name{
+    /* padding-left: 50%; */
+    width: 221%;
+    padding: 5%;
+}
+#message{
+    padding-bottom: 50%;
+    padding-right: 132%;
+}
+.hh{
+    background-color: #223243;
+    color: white;
+    width: 63%;
+    
+    padding: 5%;
+    border-radius: 3px;
+}
+
+
+

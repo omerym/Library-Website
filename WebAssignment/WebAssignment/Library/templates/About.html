@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/navbar.css'%}" />
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/About.css'%}" />
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/background.css'%}" />
+</head>
+<body>
+    <ul class="navbar">
+        <li class="navbar"><a class="navbar" href="/">Home</a></li>
+        <li class="navbar" name="Admin"><a class="navbar" href="/addbook">New Book</a></li>
+        <li class="navbar-active"><a class="navbar" href="/about">About</a></li>
+        <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
+        <li class="navbar" name="any"><a class="navbar" href="/user">Profile</a></li>
+        <li name="unsigned" class="navbar"><a class="navbar" href="/login">Login</a></li>
+        <li name="unsigned" class="navbar"><a class="navbar" href="/register">Registor</a></li>
+        <li name="any" class="navbar"><button onclick="signout()">sign out</button></li>
+        <li class="navbar" style="padding-left: 300px;color: #90d8f9;">EGYPT'S FIRST BOOKSTORE FOR GEEKS</li>
+
+    </ul><br />
+    <div id="contactId"></div>
+    <div id="center-about">
+
+
+        <div class="overlay-text">
+            <h1>About Us!</h1>
+            <h3>The first store in Egypt and the MENA region for technology and business books</h3>
+        </div>
+
+        {% load static %}
+        <img src="%static 'css/images/depositphotos_186359778-stock-photo-bookshelf-in-book-store-3d.jpg'%}">
+    </div>
+
+    <div class="center-text">
+
+        <p>At op Bookstore, we believe that books are the main resource for effective learning. We aim to provide technology and business books with affordable prices.</p>
+        For More informations, You Can contact us via <a href="contactUs.html" target="_blank">Contact Us</a>
+
+        <p>The website is owned and managed by experts in the software and business fields. Books are hand-picked by professionals.</p>
+    </div>
+
+    {% load static %}
+    <script src="{%static 'js/content.js'%}"></script>
+</body>
+</html>

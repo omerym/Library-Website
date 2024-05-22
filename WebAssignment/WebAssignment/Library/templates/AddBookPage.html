@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>New Book</title>
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/navbar.css'%}" />
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/AddBookPage.css'%}" />
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/background.css'%}" />
+    {% load static %}
+    <script src="{%static 'js/bookLoader.js'%}"></script>
+</head>
+<body>
+    <ul class="navbar">
+        <li class="navbar"><a class="navbar" href="/">Home</a></li>
+        <li class="navbar-active" name="Admin"><a class="navbar" href="/addbook">New Book</a></li>
+        <li class="navbar"><a class="navbar" href="/about">About</a></li>
+        <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
+        <li class="navbar" name="any"><a class="navbar" href="/user">Profile</a></li>
+
+    </ul><br />
+    <div id="contactId"></div>
+    <form>
+        <div>
+            Book Id: <input type="text" placeholder="0000000000000" name="Id" required /><br />
+            Book Name: <input type="text" placeholder="book name" name="Name" required /><br />
+            Author: <input type="text" placeholder="author" name="Author" required /><br />
+            Category: <input type="text" placeholder="category" name="Category" /><br />
+            Description:<br><textarea name="Description" maxlength="255" cols="50" rows="10"></textarea><br />
+        </div>
+        <button onclick="addBook()">Submit</button>
+    </form>
+    {% load static %}
+    <script src="{%static 'js/content.js'%}"></script>
+
+</body>
+</html>

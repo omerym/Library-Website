@@ -1,0 +1,40 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dad8d8;
+}
+form{
+    background-color: #cad1d2;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+form div{
+    margin-bottom: 20px;
+}
+form input[type="text"],form textarea{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+form input[type="submit"]{
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #5d6b93;
+}
+
+form input[type = "submit"]:hover{
+   background-color: #586474;
+}
+form textarea{
+    height: 200px;
+}

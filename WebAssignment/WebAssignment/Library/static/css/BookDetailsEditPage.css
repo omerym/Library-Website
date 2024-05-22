@@ -1,0 +1,58 @@
+body {
+    background-color: #000000;
+}
+#title {
+    display:inline;
+    max-width: 400px;
+}
+#author {
+    display:inline;
+    max-width: 200px;
+    margin: 0 auto;
+    font-size:16px;
+}
+#catogery {
+    display:inline;
+    font-size: 12px;
+}
+#description {
+    padding: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 80%;
+}
+#by
+{
+    display:inline;
+    font-size: 16px;
+    opacity:0.5;
+}
+#what {
+    display: inline;
+    max-width: 200px;
+    font-size: 16px;
+    text-align: right;
+}
+#BookBlock {
+    background-color: #cad1d2;
+    border-width: 10px;
+    border-color: #507783;
+    padding: 10px;
+    max-width: 600px;
+    height: 100vh;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+#edit {
+    background-color: #507783;
+    border-width: 10px;
+    border-color: #507783;
+    margin-left:250px;
+    border-radius: 15px;
+}
+
