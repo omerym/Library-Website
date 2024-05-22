@@ -1,6 +1,12 @@
+from os import name
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.contrib import messages
+
+from WebAssignment.Library.models import Book
+from .forms import BookForm
+
 # Create your views here.
 def home(request):
     template = loader.get_template('landingPage.html')
@@ -9,8 +15,21 @@ def About(request):
     template = loader.get_template('About.html')
     return HttpResponse(template.render())
 def AddBook(request):
-    template = loader.get_template('AddBookPage.html')
-    return HttpResponse(template.render())
+    messages.info(request,"");
+    if request.method == "POST":   
+        form = BookForm(request.POST)
+        if form.is_valid():
+            d = form.cleaned_data
+            if(Book.objects.filter(bookId = d['bookId'])):
+                messages.error(request, f"book with id {d['bookId']} already exists!")
+                return render(request,"AddBookPage.html", {"form": form})
+            else:
+                b = Book(bookId = d['bookId'], title = d['title'], author = d['author'], catogery = d['catogery'] ,description = d['description'])
+                b.save()
+                return HttpResponseRedirect(f"/bookdetails?id={form.cleaned_data['bookId']}")
+    else:
+        form = BookForm()
+        return render(request,"AddBookPage.html", {"form": form})
 def BookDetails(request):
     template = loader.get_template('BookDetails.html')
     return HttpResponse(template.render())
