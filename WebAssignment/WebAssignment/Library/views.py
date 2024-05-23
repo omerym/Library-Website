@@ -27,6 +27,8 @@ def About(request):
     return render(request, "About.html")
 
 def AddBook(request):
+    if not request.user.is_authenticated or not request.user.has_perm('Library.admin'):
+        redirect('/')
     if request.method == "POST":   
         form = BookForm(request.POST)
         if form.is_valid():
@@ -52,12 +54,18 @@ def ContactUs(request):
     return render(request,'ContactUs.html')
 
 def EditBook(request):
+    if not request.user.is_authenticated or not request.user.has_perm('Library.admin'):
+        redirect('/')
     return render(request,'EditBookPage.html')
 
 def EditProfile(request):
+    if not request.user.is_authenticated:
+        redirect('/')
     return render(request,'EditProfile.html')
 
 def UserProfile(request):
+    if not request.user.is_authenticated:
+        redirect('/')
     return render(request,'UserProfile.html')
 
 def Login(request):
