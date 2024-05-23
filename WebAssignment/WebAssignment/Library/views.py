@@ -31,7 +31,7 @@ def AddBook(request):
                 messages.error(request, f"book with id {d['bookId']} already exists!")
                 return render(request,"AddBookPage.html", {"form": form})
             else:
-                b = Book(bookId = d['bookId'], title = d['title'], author = d['author'], catogery = d['catogery'] ,description = d['description'])
+                b = Book(bookId = d['bookId'], title = d['title'], author = d['author'], category = d['category'] ,description = d['description'])
                 b.save()
                 return HttpResponseRedirect(f"/bookdetails?id={form.cleaned_data['bookId']}")
     else:
