@@ -49,3 +49,69 @@ li.rolefunctionArea{
 span.Booklist p{
     font-weight: bold;
 }
+.profile-container {
+    margin: 50px auto;
+    width: 60%;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.profile-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+    .profile-info label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+        color: #555;
+    }
+
+    .profile-info p {
+        margin: 5px 0;
+        font-size: 16px;
+        color: #777;
+    }
+
+.user-privileges {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+    .user-privileges li {
+        margin-bottom: 10px;
+    }
+
+    .user-privileges button {
+        background-color: #414959;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+        .user-privileges button:hover {
+            background-color: #9aacc7;
+        }
+
+.book-list {
+    margin-top: 20px;
+    text-align: center;
+}
