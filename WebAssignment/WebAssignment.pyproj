@@ -74,7 +74,6 @@
     <Content Include="WebAssignment\Library\static\css\navbar.css" />
     <Content Include="WebAssignment\Library\static\css\Profile.css" />
     <Content Include="WebAssignment\Library\static\js\bookLoader.js" />
-    <Content Include="WebAssignment\Library\static\js\content.js" />
     <Content Include="WebAssignment\Library\static\js\login.js" />
     <Content Include="WebAssignment\Library\static\js\ProfileScript.js" />
     <Content Include="WebAssignment\Library\templates\About.html" />

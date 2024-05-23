@@ -1,6 +1,7 @@
 from ast import mod
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.db import models
 # Create your models here.
 class Book(models.Model):
     bookId = models.CharField(max_length=50, primary_key=True)

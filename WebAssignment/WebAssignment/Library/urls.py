@@ -10,7 +10,8 @@ urlpatterns = [
     path('editprofile/', views.EditProfile, name='editProfile'),
     path('login/', views.Login, name='Login'),
     path('register/', views.Register, name='register'),
-    path('user/', views.User, name='user'),
+    path('user/', views.UserProfile, name='user'),
     path('books/', views.GetBooks, name='GetBooks'),
+    path('signout/', views.SignOut, name='SignOut'),
 ]
 

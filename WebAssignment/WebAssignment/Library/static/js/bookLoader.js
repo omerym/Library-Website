@@ -1,10 +1,10 @@
 ﻿
 class book {
-    constructor(id, name, author,catogery=' ', description =' ') {
+    constructor(id, name, author,category=' ', description =' ') {
         this.id = id;
         this.name = name;
         this.author = author;
-        this.catogery = catogery;
+        this.category = category;
         this.description = description;
     }
 }

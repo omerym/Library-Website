@@ -8,7 +8,17 @@
 	<link rel="stylesheet" href="{%static 'css/loginPage.css'%}">
 </head>
 <body>
-	<form action="/" onsubmit="login()">
+
+	{% if messages %}
+	<div role="alert">
+		{% for message in messages %}
+		<div style="color:red;">{{ message }}</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+
+	<form action="/register/" method="post">
+		{% csrf_token %}
 		<div class="container">
 
 			<div class="form signup">
@@ -17,7 +27,7 @@
 
 				<div class="inputBox">
 
-					<input id="username" type="text" minlength="4" maxlength="12" required="required">
+					<input id="username" name="username" type="text" minlength="4" maxlength="12" required="required">
 
 					<i class="fa-regular fa-user"></i>
 
@@ -26,7 +36,7 @@
 				</div>
 				<div class="inputBox">
 
-					<input name="mail" type="email" required="required">
+					<input name="email" type="email" required="required">
 
 					<i class="fa-regular fa-envelope"></i>
 					<span>email address</span>
@@ -34,7 +44,7 @@
 				</div>
 				<div class="inputBox">
 
-					<input type="password" id="password" minlength="6" maxlength="32" required="required">
+					<input type="password" name="password" id="password" minlength="6" maxlength="32" required="required">
 
 					<i class="fa-solid fa-lock"></i>
 
@@ -50,7 +60,7 @@
 				</div>
 				<div class="inputBox">
 					<label for="userTypeInput" class="selectuser">Select user type:</label>
-					<select id="userTypeInput" required>
+					<select id="userTypeInput" name="userType" required>
 						<option value="User">User</option>
 						<option value="Admin">Admin</option>
 					</select>
