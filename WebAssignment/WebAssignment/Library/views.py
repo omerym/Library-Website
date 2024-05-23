@@ -142,6 +142,17 @@ def GetBooks(request):
     if get.get("category",None):
         return GetBooksByCategory(request)
     return GetAllBooks(request)
+
+def GetBorrowedBooks(request):
+    if not request.user.is_authenticated:
+        return JsonResponse(None, safe = False)
+    data = Book.objects.filter(borrowedBy = request.user).values().iterator()
+    x=[]
+    for i in data:
+        x.append(i)
+    return JsonResponse(x, safe = False)
+    
+
 def GetAllBooks(request):
     data = Book.objects.all().values().iterator()
     x=[]
