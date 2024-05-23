@@ -171,6 +171,13 @@ def Return(request):
     book.save()
     return redirect(f'/bookdetails?id={id}')
 
+def Remove(request):
+    id = request.GET.get("id",None)
+    book = Book.objects.filter(bookId = id)
+    if request.user.has_perm('Library.admin') and  id and book:
+        book.delete()
+    return redirect('/')
+
 def GetAdminPermission():
     p = Permission.objects.filter(codename='admin').first()
     if p == None:
