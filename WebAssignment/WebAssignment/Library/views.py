@@ -39,7 +39,7 @@ def AddBook(request):
             else:
                 b = Book(bookId = d['bookId'], title = d['title'], author = d['author'], category = d['category'] ,description = d['description'])
                 b.save()
-                return render(request, f"/bookdetails?id={form.cleaned_data['bookId']}")
+                return redirect(f"/bookdetails?id={form.cleaned_data['bookId']}")
     else:
         form = BookForm()
         return render(request,"AddBookPage.html", {"form": form})
