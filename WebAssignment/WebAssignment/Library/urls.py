@@ -11,5 +11,6 @@ urlpatterns = [
     path('login/', views.Login, name='Login'),
     path('register/', views.Register, name='register'),
     path('user/', views.User, name='user'),
+    path('bookDetails/<int:book_id>', views.bookDetails, name='bookDetails'),
 ]
 
