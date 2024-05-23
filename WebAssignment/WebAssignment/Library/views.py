@@ -56,7 +56,35 @@ def ContactUs(request):
 def EditBook(request):
     if not request.user.is_authenticated or not request.user.has_perm('Library.admin'):
         redirect('/')
-    return render(request,'EditBookPage.html')
+    if request.method == "POST":
+        #BookID=request.GET.get('id')
+        #print(f"BookID: {BookID}")
+        #if not BookID:
+            #redirect('/')
+        #else:
+            form = BookForm(request.POST)
+            
+            
+            if form.is_valid():
+                FormData = form.cleaned_data
+                CurrentBook = Book.objects.get(bookId=FormData['bookId'])
+                if(Book.objects.filter(bookId=FormData['bookId'])):
+                    print(f"BookID: {FormData['bookId']}")
+                    CurrentBook.title= FormData['title']
+                    CurrentBook.author=FormData['author']
+                    CurrentBook.category=FormData['category']
+                    CurrentBook.description=FormData['description']
+                    CurrentBook.save()
+                    return redirect(f"/bookdetails?id={form.cleaned_data['bookId']}")
+            else:
+                messages.error(request, f"book does not exist")
+                return render(request,"EditBookPage.html", {"form": form})
+                
+    else:
+        form = BookForm()
+        return render(request,"EditBookPage.html", {"form": form})
+    template = loader.get_template('EditBookPage.html')
+    return HttpResponse(template.render())
 
 def EditProfile(request):
     if not request.user.is_authenticated:

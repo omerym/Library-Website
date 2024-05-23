@@ -10,39 +10,45 @@
     {% load static %}
     <script src="{%static 'js/bookLoader.js'%}"></script>
 </head>
+
 <body style="background-color: #dad8d8 ">
     <ul class="navbar">
         <li class="navbar"><a class="navbar" href="/">Home</a></li>
-        {% if perms.Library.admin %}
         <li class="navbar"><a class="navbar" href="/addbook">New Book</a></li>
-        {% endif %}
         <li class="navbar"><a class="navbar" href="/about">About</a></li>
         <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
-        {% if request.user.is_authenticated %}
         <li class="navbar"><a class="navbar" href="/user">Profile</a></li>
-        {%else%}
         <li class="navbar"><a class="navbar" href="/login">Login</a></li>
-        <li class="navbar"><a class="navbar" href="/register">Register</a></li>
-        {% endif %}
+        <li class="navbar"><a class="navbar" href="/register">Registor</a></li>
     </ul><br />
+    <form action="/editbook/" method="post">
+        {% csrf_token %}
+        <div id="BookBlock">
+            <div id="contactId"></div>
+            <input type="hidden" name="bookId" value="{{ request.GET.id }}" />
+            <input type="title" id="title" name="title" />
+            <h2 id="by"> written by</h2>
+            <input type="text" id="author" name="author" />
+            <br />
+            <h2 id="what">category:</h2>
+            <input type="text" id="catogery" name="category" />
+            <textarea id="description" name="description"></textarea>
+            <input type="submit" />
+        </div>
+        <div id="error">Book not found!</div>
+    </form>
+    {% load static %}
+    <script src="{%static 'js/content.js'%}"></script>
 
-    {% if perms.Library.admin %}
-    <div id="BookBlock">
-        <div id="contactId"></div>
-        <input type="text" id="title" />
-        <h2 id="by"> written by</h2>
-        <input type="text" id="author" />
-        <br />
-        <h2 id="what">category:</h2>
-        <input type="text" id="catogery" />
-        <textarea id="description"></textarea>
-        <button id="edit">Edit book info</button>
-    </div>
-    <div id="error">Book not found!</div>
-    {%endif%}
+    <!-- {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>alert("{{ message }}")</script> {% endif %}
+    {% endfor %}
+    {% endif %} -->
+
     <script>
         loadBookEdit();
     </script>
 </body>
 </html>
-
