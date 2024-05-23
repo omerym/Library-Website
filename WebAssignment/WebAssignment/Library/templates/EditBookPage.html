@@ -8,7 +8,6 @@
     {% load static %}
     <link rel="stylesheet" href="{%static 'css/navbar.css'%}" />
     {% load static %}
-    <script src="{%static 'js/bookLoader.js'%}"></script>
 </head>
 
 <body style="background-color: #dad8d8 ">
@@ -18,37 +17,21 @@
         <li class="navbar"><a class="navbar" href="/about">About</a></li>
         <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
         <li class="navbar"><a class="navbar" href="/user">Profile</a></li>
-        <li class="navbar"><a class="navbar" href="/login">Login</a></li>
-        <li class="navbar"><a class="navbar" href="/register">Registor</a></li>
     </ul><br />
     <form action="/editbook/" method="post">
         {% csrf_token %}
         <div id="BookBlock">
             <div id="contactId"></div>
-            <input type="hidden" name="bookId" value="{{ request.GET.id }}" />
-            <input type="title" id="title" name="title" />
+            <input type="hidden" name="bookId" value="{{ book.bookId}}" />
+            <input type="text" id="title" name="title" value="{{ book.title}}"/>
             <h2 id="by"> written by</h2>
-            <input type="text" id="author" name="author" />
+            <input type="text" id="author" name="author" value="{{ book.author}}"/>
             <br />
             <h2 id="what">category:</h2>
-            <input type="text" id="catogery" name="category" />
-            <textarea id="description" name="description"></textarea>
+            <input type="text" id="category" name="category" value="{{ book.category}}"/>
+            <textarea id="description" name="description" value="{{ book.bookId}}"></textarea>
             <input type="submit" />
         </div>
-        <div id="error">Book not found!</div>
     </form>
-    {% load static %}
-    <script src="{%static 'js/content.js'%}"></script>
-
-    <!-- {% if messages %}
-    {% for message in messages %}
-    {% if message.tags %}
-    <script>alert("{{ message }}")</script> {% endif %}
-    {% endfor %}
-    {% endif %} -->
-
-    <script>
-        loadBookEdit();
-    </script>
 </body>
 </html>
