@@ -191,9 +191,3 @@ def returnBook(request,book_id):
         messages.success(request, 'You have successfully returned the book "{book.title}".')
         return redirect('/books/') 
     return render(request, '.html', {'book': book})
-
-
-def Userprofile(request):
-  user = request.user
-  is_admin = user.has_parm('')
-  return render (request,'profilUser.html',{'user':user,'is_admin':is_admin})
