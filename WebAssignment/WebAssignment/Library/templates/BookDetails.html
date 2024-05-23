@@ -42,15 +42,17 @@
         <button onclick="remove()">Remove</button>
         <button onclick="goToEdit()">Edit</button>
         {% else %}
+        {%if not book.borrowedBy%}
         <button id="borrow" onclick="borrow(); toggleBorrowButton();">Borrow</button>
+        {%elif book.borrowedBy == user%}
         <button id="return" onclick="returnBook(); toggleBorrowButton()">Return</button>
+        {%else%}
+        <span>{{book.title}} is currently unavailable.</span>
+        {% endif %}
         {% endif %}
     </div>
     {%else%}
     <div id="error">Book with id: {{id}} not found!</div>
     {%endif%}
-    <script>
-        toggleBorrowButton();
-    </script>
 </body>
 </html>

@@ -13,6 +13,8 @@ urlpatterns = [
     path('user/', views.UserProfile, name='user'),
     path('books/', views.GetBooks, name='GetBooks'),
     path('signout/', views.SignOut, name='SignOut'),
+    path('books/borrow/', views.Borrow, name='Borrow'),
+    path('books/return/', views.Return, name='Return'),
 
 ]
 

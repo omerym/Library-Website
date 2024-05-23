@@ -142,6 +142,24 @@ def GetBooksByAuthor(request):
         x.append(i)
     return JsonResponse(x, safe = False)
 
+def Borrow(request):
+    id = request.GET.get("id",None)
+    book = Book.objects.filter(bookId = id).first()
+    if not id or not request.user.is_authenticated or not book or book.borrowedBy:
+        return redirect('/')
+    book.borrowedBy = request.user
+    book.save()
+    return redirect(f'/bookdetails?id={id}')
+ 
+def Return(request):
+    id = request.GET.get("id",None)
+    book = Book.objects.filter(bookId = id).first()
+    if not id or not request.user.is_authenticated or not book or book.borrowedBy != request.user:
+        return redirect('/')
+    book.borrowedBy = None
+    book.save()
+    return redirect(f'/bookdetails?id={id}')
+
 def GetAdminPermission():
     p = Permission.objects.filter(codename='admin').first()
     if p == None:

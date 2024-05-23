@@ -41,10 +41,7 @@ function loadBorrowedBooks() {
 }
 function returnBook() {
     const id = getId();
-    x = JSON.parse(localStorage.getItem('borrowedBooks'));
-    i = x.indexOf(id);
-    x.splice(i, 1);
-    localStorage.setItem('borrowedBooks', JSON.stringify(x));
+    window.location.href = `/books/return?id=${id}`;
 }
 function* getBorrowedBooks() {
     x = JSON.parse(localStorage.getItem('borrowedBooks'));
@@ -83,27 +80,10 @@ function goToEdit() {
 }
 function borrow() {
     const id = getId();
-    borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks'));
-    if (borrowedBooks == null || borrowedBooks.length == 0) {
-        borrowedBooks = [];
-    }
-    borrowedBooks.push(id);
-    localStorage.setItem('borrowedBooks', JSON.stringify(borrowedBooks));
+    window.location.href = `/books/borrow?id=${id}`;
 }
 function getBookHtml(book) {
     return `<div onclick ="window.location.href='/bookdetails?id=${book.bookId}'" class="book">Title: ${book.title}<br />Author: ${book.author}<br /></div >`;
-}
-function toggleBorrowButon() {
-    const id = getId();
-    borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks'));
-    if (borrowedBooks == null || borrowedBooks.length == 0 || borrowedBooks.indexOf(id) < 0) {
-        document.getElementById('borrow').disabled = false;
-        document.getElementById('return').disabled = true;
-    }
-    else {
-        document.getElementById('borrow').disabled = true;
-        document.getElementById('return').disabled = false;
-    }
 }
 function search() {
     const xhttp = new XMLHttpRequest();
