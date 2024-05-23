@@ -12,40 +12,35 @@
 <body style="background-color: #dad8d8">
     <ul class="navbar">
         <li class="navbar"><a class="navbar" href="/">Home</a></li>
-        <li class="navbar"><a class="navbar" href="/addbook">New Book</a></li>
+        <li name ="Admin" class="navbar"><a class="navbar" href="/addbook">New Book</a></li>
         <li class="navbar"><a class="navbar" href="/about">About</a></li>
         <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
         <li class="navbar"><a class="navbar" href="/user">Profile</a></li>
-        {% if user.is_authenticated %}
-                <li name="any" class="navbar"><button onclick="signout()">sign out</button></li>
-        {% else %}
-            <li class="navbar"><a class="navbar" href="/login">Login</a></li>
-            <li class="navbar"><a class="navbar"  href="/register">Register</a></li>
-        {% endif %}
+        <li name="any" class="navbar"><button onclick="signout()">sign out</button></li>
+        <li name="unsigned" class="navbar"><a class="navbar" href="/login">Login</a></li>
+        <li name="unsigned" class="navbar"><a class="navbar" href="/register">Register</a></li>
     </ul><br />
+    {%if book != None%}
     <div id="BookBlock">
         <div id="contactId"></div>
         <h1 id="title">{{ book.title }}</h1>
-        <h2 id="by"> written by</h2>
+        <h2 id="by"> written by: </h2>
         <h2 id="author">{{ book.author }}</h2>
         <br />
-        <h2 id="what">{{ book.category }}</h2>
-        <h2 id="category">Category</h2>
+        <h2 id="what">Category</h2>
+        <h2 id="category">{{ book.category }}</h2>
         <p id="description">{{ book.description }}</p>
         <br />
-
-        {% if user_type == 'Admin' %}
-            <button name="Admin" onclick="remove()">Remove</button>
-            <button name="Admin" onclick="goToEdit()">Edit</button>
-        {% elif user_type == 'User' %}
-            <button name="User" id="borrow" onclick="borrow(); toggleBorrowButton();">Borrow</button>
-            <button name="User" id="return" onclick="returnBook(); toggleBorrowButton()">Return</button>
-        {% endif %}
+        <button name="Admin" onclick="remove()">Remove</button>
+        <button name="Admin" onclick="goToEdit()">Edit</button>
+        <button name="User" id="borrow" onclick="borrow(); toggleBorrowButton();">Borrow</button>
+        <button name="User" id="return" onclick="returnBook(); toggleBorrowButton()">Return</button>
     </div>
-    <div id="error">Book not found!</div>
+    {%else%}
+    <div id="error">Book with id: {{id}} not found!</div>
+    {%endif%}
     <script src="{% static 'js/content.js' %}"></script>
     <script>
-        loadBook();
         toggleBorrowButton();
     </script>
 </body>

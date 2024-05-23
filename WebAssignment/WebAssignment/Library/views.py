@@ -1,11 +1,13 @@
 from os import name
+import re
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib import messages
-
+from django.core import serializers
+from django.http import JsonResponse
 from WebAssignment.Library.models import Book
 from .forms import BookForm
 
@@ -39,8 +41,10 @@ def AddBook(request):
     return HttpResponse(template.render())
 
 def BookDetails(request):
-    template = loader.get_template('BookDetails.html')
-    return HttpResponse(template.render())
+    book = Book.objects.filter(bookId = request.GET["id"])
+    if book:
+        return render(request,"BookDetails.html",{"book":book.first(),"id":book.first().bookId})
+    return render(request,"BookDetails.html",{"book":None,"id":request.GET["id"]})
 
 def ContactUs(request):
     template = loader.get_template('ContactUs.html')
@@ -65,13 +69,43 @@ def Login(request):
 def Register(request):
     template = loader.get_template('RegisterPage.html')
     return HttpResponse(template.render())
-
-def bookDetails(request):
-    book =  get_object_or_404(Book, id=book_id)
-    user_type = 'unsign'
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            user_type = 'Admin'
-        else:
-            user_type = 'User'
-    return render(request,'BookDetails.html',{'book':book,'user_type':user_type})
+def GetBooks(request):
+    get = request.GET
+    if get.get("title",None):
+        return GetBooksByTitle(request)
+    if get.get("author",None):
+        return GetBooksByAuthor(request)
+    if get.get("category",None):
+        return GetBooksByCategory(request)
+    return GetAllBooks(request)
+def GetAllBooks(request):
+    data = Book.objects.all().values().iterator()
+    x=[]
+    for i in data:
+        x.append(i)
+    return JsonResponse(x, safe = False)
+def GetBooksByTitle(request):
+    title = request.GET["title"]
+    print(title)
+    data = Book.objects.filter(title__icontains=title).values().iterator()
+    x=[]
+    for i in data:
+        x.append(i)
+    return JsonResponse(x, safe = False)    
+def GetBooksByCategory(request):
+    cat = request.GET["category"]
+    print(cat)
+    data = Book.objects.filter(category__icontains=cat).values().iterator()
+    x=[]
+    for i in data:
+        x.append(i)
+    return JsonResponse(x, safe = False)    
+def GetBooksByAuthor(request):
+    author = request.GET["author"]
+    print(author)
+    data = Book.objects.filter(author__icontains=author).values().iterator()
+    data = Book.objects.all().values().iterator()
+    x=[]
+    for i in data:
+        x.append(i)
+    return JsonResponse(x, safe = False)    

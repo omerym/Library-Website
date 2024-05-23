@@ -29,9 +29,16 @@
 
 
     <div>
-        <input type="text" id="searchBar" placeholder="search By Title or Author" />
+
+        <select id="search">
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="category">Category</option>
+        </select>
+
+        <input type="text" id="searchBar" />
         <button onclick="search()">search</button>
-        <button onclick="refresh()">refresh</button>
+        <button onclick="refresh()">all</button>
     </div><br />
 
     <div id="books"></div>
