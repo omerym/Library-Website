@@ -57,16 +57,6 @@ function* getBorrowedBooks() {
         yield book;
     }
 }
-function addBook() {
-    books = JSON.parse(localStorage.getItem('books'));
-    n = document.getElementsByName('Name')[0].value;
-    id = document.getElementsByName('Id')[0].value;
-    author = document.getElementsByName('Author')[0].value;
-    category = document.getElementsByName('Category')[0].value;
-    description = document.getElementsByName('Description')[0].value;
-    books.push(new book(id, n, author, category, description));
-    localStorage.setItem('books', JSON.stringify(books));
-}
 function getId() {
     const params = new URLSearchParams(document.location.search);
     const id = params.get("id");
@@ -102,45 +92,6 @@ function borrow() {
 }
 function getBookHtml(book) {
     return `<div onclick ="window.location.href='/bookdetails?id=${book.bookId}'" class="book">Title: ${book.title}<br />Author: ${book.author}<br /></div >`;
-}
-function loadBook() {
-    const id = getId();
-    books = JSON.parse(localStorage.getItem('books'));
-    if (books == null ) {
-        return;
-    }
-    for (b of books) {
-        if (b.id == id) {
-            document.getElementById('BookBlock').style.display = '';
-            document.getElementById('error').style.display = 'none';
-            document.getElementById("title").innerHTML = b.name;
-            document.getElementById("author").innerHTML = b.author;
-            document.getElementById("catogery").innerHTML = b.catogery;
-            document.getElementById("description").innerHTML =b.description;
-            return;
-        }
-    }
-    document.getElementById('BookBlock').style.display = 'none';
-    document.getElementById('error').style.display = '';
-} function loadBookEdit() {
-    const id = getId();
-    books = JSON.parse(localStorage.getItem('books'));
-    if (books == null) {
-        return;
-    }
-    for (b of books) {
-        if (b.id == id) {
-            document.getElementById('BookBlock').style.display = '';
-            document.getElementById('error').style.display = 'none';
-            document.getElementById("title").value = b.name;
-            document.getElementById("author").value = b.author;
-            document.getElementById("catogery").value = b.catogery;
-            document.getElementById("description").value = b.description;
-            return;
-        }
-    }
-    document.getElementById('BookBlock').style.display = 'none';
-    document.getElementById('error').style.display = '';
 }
 function toggleBorrowButon() {
     const id = getId();

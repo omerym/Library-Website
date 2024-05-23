@@ -39,11 +39,11 @@
              <p id="description">{{ book.description }}</p>
              <br />
              {% if perms.Library.admin %}
-             <button name="Admin" onclick="remove()">Remove</button>
-             <button name="Admin" onclick="goToEdit()">Edit</button>
+             <button onclick="remove()">Remove</button>
+             <button onclick="goToEdit()">Edit</button>
              {% else %}
-             <button name="User" id="borrow" onclick="borrow(); toggleBorrowButton();">Borrow</button>
-             <button name="User" id="return" onclick="returnBook(); toggleBorrowButton()">Return</button>
+             <button id="borrow" onclick="borrow(); toggleBorrowButton();">Borrow</button>
+             <button id="return" onclick="returnBook(); toggleBorrowButton()">Return</button>
              {% endif %}
          </div>
     {%else%}
