@@ -1,4 +1,6 @@
 from ast import mod
+from asyncio.windows_events import NULL
+from turtle import mode
 from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
@@ -9,4 +11,4 @@ class Book(models.Model):
     author = models.CharField(max_length=50)
     category = models.CharField(max_length=50, null=True)
     description = models.CharField(max_length=255, null=True)
-    isBorrowed = models.BooleanField(default=False)
+    borrowedBy = models.ForeignKey(User,on_delete=models.SET_NULL,null=True, blank=True)

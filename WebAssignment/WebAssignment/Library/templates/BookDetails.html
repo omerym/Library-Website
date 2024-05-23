@@ -28,24 +28,24 @@
         {% endif %}
     </ul><br />
     {%if book != None%}
-         <div id="BookBlock">
-             <div id="contactId"></div>
-             <h1 id="title">{{ book.title }}</h1>
-             <h2 id="by"> written by: </h2>
-             <h2 id="author">{{ book.author }}</h2>
-             <br />
-             <h2 id="what">Category</h2>
-             <h2 id="category">{{ book.category }}</h2>
-             <p id="description">{{ book.description }}</p>
-             <br />
-             {% if perms.Library.admin %}
-             <button onclick="remove()">Remove</button>
-             <button onclick="goToEdit()">Edit</button>
-             {% else %}
-             <button id="borrow" onclick="borrow(); toggleBorrowButton();">Borrow</button>
-             <button id="return" onclick="returnBook(); toggleBorrowButton()">Return</button>
-             {% endif %}
-         </div>
+    <div id="BookBlock">
+        <div id="contactId"></div>
+        <h1 id="title">{{ book.title }}</h1>
+        <h2 id="by"> written by: </h2>
+        <h2 id="author">{{ book.author }}</h2>
+        <br />
+        <h2 id="what">Category</h2>
+        <h2 id="category">{{ book.category }}</h2>
+        <p id="description">{{ book.description }}</p>
+        <br />
+        {% if perms.Library.admin %}
+        <button onclick="remove()">Remove</button>
+        <button onclick="goToEdit()">Edit</button>
+        {% else %}
+        <button id="borrow" onclick="borrow(); toggleBorrowButton();">Borrow</button>
+        <button id="return" onclick="returnBook(); toggleBorrowButton()">Return</button>
+        {% endif %}
+    </div>
     {%else%}
     <div id="error">Book with id: {{id}} not found!</div>
     {%endif%}

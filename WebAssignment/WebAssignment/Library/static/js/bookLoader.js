@@ -126,7 +126,6 @@ function search() {
     }
     searchBy = document.getElementById("search").value;
     query = document.getElementById("searchBar").value;
-    alert(`/books?${searchBy}=${query}`);
     xhttp.open("GET", `/books?${searchBy}=${query}`, true);
     xhttp.send();
     var container = document.getElementById("books");
