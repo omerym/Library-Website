@@ -11,18 +11,24 @@
     {% load static %}
     <link rel="stylesheet" href="{%static 'css/background.css'%}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <script src="{%static 'js/login.js'%}"></script>
 </head>
 <body>
     <ul class="navbar">
         <li class="navbar"><a class="navbar" href="/">Home</a></li>
-        <li class="navbar" name="Admin"><a class="navbar" href="/addbook">New Book</a></li>
+        {% if perms.Library.admin %}
+        <li class="navbar"><a class="navbar" href="/addbook">New Book</a></li>
+        {%endif%}
         <li class="navbar"><a class="navbar" href="/about">About</a></li>
         <li class="navbar-active"><a class="navbar" href="/contactus">Contact Us</a></li>
-        <li class="navbar" name="any"><a class="navbar" href="/user">Profile</a></li>
-        <li name="unsigned" class="navbar"><a class="navbar" href="/login">Login</a></li>
-        <li name="unsigned" class="navbar"><a class="navbar" href="/register">Registor</a></li>
-        <li name="any" class="navbar"><button onclick="signout()">sign out</button></li>
+
+        {% if not request.user.is_authenticated %}
+        <li class="navbar"><a class="navbar" href="/login">Login</a></li>
+        <li class="navbar"><a class="navbar" href="/register">Registor</a></li>
+        {% else %}
+        <li class="navbar"><a class="navbar" href="/user">Profile</a></li>
+        <li class="navbar"><button onclick="signout()">sign out</button></li>
+        {%endif%}
         <li class="navbar" style="padding-left: 300px;color: #90d8f9;">EGYPT'S FIRST BOOKSTORE FOR GEEKS</li>
 
     </ul><br />

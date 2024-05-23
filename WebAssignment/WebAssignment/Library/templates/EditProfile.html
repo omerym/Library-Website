@@ -14,14 +14,19 @@
 <body>
     <ul class="navbar">
         <li class="navbar"><a class="navbar" href="/">Home</a></li>
-        <li class="navbar" name="Admin"><a class="navbar" href="/addbook">New Book</a></li>
+        {% if perms.Library.admin %}
+        <li class="navbar"><a class="navbar" href="/addbook">New Book</a></li>
+        {% endif %}
         <li class="navbar"><a class="navbar" href="/about">About</a></li>
         <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
+        {% if request.user.is_authenticated %}
         <li class="navbar-active" name="any"><a class="navbar" href="/user">Profile</a></li>
-
+        {% endif %}
     </ul><br />
+    {% if request.user.is_authenticated %}
     <div id="contactId"></div>
-    <img src="../css/images/NoProfile.png" alt="user profile pic">
+    {% load static %}
+    <img src="{%static 'css/images/NoProfile.png'%}" alt="user profile pic">
     <p class="edit">New Profile Picture</p>
     <input type="file" class="directory" />
     <p class="username">New User Name</p>
@@ -30,7 +35,7 @@
     <textarea class="info" rows="1" cols="20"></textarea>
     <div class="descriptionArea"><textarea class="description" rows="4" cols="50"></textarea></div>
     <button class="confirmation" onclick="window.location.href='/user'">Confirm</button>
-
+    {% endif %}
     {% load static %}
     <script src="{%static 'js/content.js'%}"></script>
 

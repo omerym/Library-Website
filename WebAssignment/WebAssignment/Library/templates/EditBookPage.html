@@ -13,13 +13,20 @@
 <body style="background-color: #dad8d8 ">
     <ul class="navbar">
         <li class="navbar"><a class="navbar" href="/">Home</a></li>
+        {% if perms.Library.admin %}
         <li class="navbar"><a class="navbar" href="/addbook">New Book</a></li>
+        {% endif %}
         <li class="navbar"><a class="navbar" href="/about">About</a></li>
         <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
+        {% if request.user.is_authenticated %}
         <li class="navbar"><a class="navbar" href="/user">Profile</a></li>
+        {%else%}
         <li class="navbar"><a class="navbar" href="/login">Login</a></li>
         <li class="navbar"><a class="navbar" href="/register">Registor</a></li>
+        {% endif %}
     </ul><br />
+
+    {% if perms.Library.admin %}
     <div id="BookBlock">
         <div id="contactId"></div>
         <input type="text" id="title" />
@@ -32,6 +39,7 @@
         <button id="edit">Edit book info</button>
     </div>
     <div id="error">Book not found!</div>
+    {%endif%}
     <script>
         loadBookEdit();
     </script>

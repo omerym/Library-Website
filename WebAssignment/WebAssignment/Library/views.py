@@ -37,13 +37,11 @@ def AddBook(request):
             else:
                 b = Book(bookId = d['bookId'], title = d['title'], author = d['author'], category = d['category'] ,description = d['description'])
                 b.save()
-                return HttpResponseRedirect(f"/bookdetails?id={form.cleaned_data['bookId']}")
+                return render(request, f"/bookdetails?id={form.cleaned_data['bookId']}")
     else:
         form = BookForm()
         return render(request,"AddBookPage.html", {"form": form})
-    template = loader.get_template('AddBookPage.html')
-    return HttpResponse(template.render())
-
+    return render(request,"AddBookPage.html")
 def BookDetails(request):
     book = Book.objects.filter(bookId = request.GET["id"])
     if book:
@@ -51,20 +49,16 @@ def BookDetails(request):
     return render(request,"BookDetails.html",{"book":None,"id":request.GET["id"]})
 
 def ContactUs(request):
-    template = loader.get_template('ContactUs.html')
-    return HttpResponse(template.render())
+    return render(request,'ContactUs.html')
 
 def EditBook(request):
-    template = loader.get_template('EditBookPage.html')
-    return HttpResponse(template.render())
+    return render(request,'EditBookPage.html')
 
 def EditProfile(request):
-    template = loader.get_template('EditProfile.html')
-    return HttpResponse(template.render())
+    return render(request,'EditProfile.html')
 
 def UserProfile(request):
-    template = loader.get_template('UserProfile.html')
-    return HttpResponse(template.render())
+    return render(request,'UserProfile.html')
 
 def Login(request):
     if request.method == "POST":
