@@ -27,7 +27,10 @@
     </ul><br />
     {% if request.user.is_authenticated %}
     <div id="contactId"></div>
-    <p id="username" class="username">temp user name (<span class="role">guest</span>)</p>
+    username: {{user.username}}<br />
+    email: {{user.email}}<br />
+    user type: {% if perms.Library.admin %}Admin{%else%}User{%endif%}<br />
+
     <ul class="UserPrivilege">
         {% if not perms.Library.admin %}
         <li name="User" class="rolefunctionArea"><button onclick="loadBorrowedBooks()" class="rolefunction">Owned books</button></li>
