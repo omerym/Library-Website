@@ -24,7 +24,7 @@
         <li class="navbar"><a class="navbar" href="/contactus">Contact Us</a></li>
         {% if not request.user.is_authenticated %}
         <li class="navbar"><a class="navbar" href="/login">Login</a></li>
-        <li class="navbar"><a class="navbar" href="/register">Registor</a></li>
+        <li class="navbar"><a class="navbar" href="/register">Register</a></li>
         {% else %}
         <li class="navbar"><a class="navbar" href="/user">Profile</a></li>
         <li class="navbar"><button onclick="signout()">sign out</button></li>
