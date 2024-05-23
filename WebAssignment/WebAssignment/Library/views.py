@@ -122,7 +122,6 @@ def GetAllBooks(request):
     return JsonResponse(x, safe = False)
 def GetBooksByTitle(request):
     title = request.GET["title"]
-    print(title)
     data = Book.objects.filter(title__icontains=title).values().iterator()
     x=[]
     for i in data:
@@ -130,7 +129,6 @@ def GetBooksByTitle(request):
     return JsonResponse(x, safe = False)    
 def GetBooksByCategory(request):
     cat = request.GET["category"]
-    print(cat)
     data = Book.objects.filter(category__icontains=cat).values().iterator()
     x=[]
     for i in data:
@@ -138,9 +136,7 @@ def GetBooksByCategory(request):
     return JsonResponse(x, safe = False)    
 def GetBooksByAuthor(request):
     author = request.GET["author"]
-    print(author)
     data = Book.objects.filter(author__icontains=author).values().iterator()
-    data = Book.objects.all().values().iterator()
     x=[]
     for i in data:
         x.append(i)

@@ -106,5 +106,29 @@ function toggleBorrowButon() {
     }
 }
 function search() {
-
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        books = JSON.parse(this.response)
+        var container = document.getElementById("books");
+        container.innerHTML = '';
+        if (books.length == 0) {
+            container.innerHTML = 'No books found!';
+        }
+        for (book of books) {
+            var span = document.createElement("span");
+            span.innerHTML = getBookHtml(book);
+            container.appendChild(span);
+        }
+    }
+    xhttp.onerror = function () {
+        var container = document.getElementById("books");
+        container.innerHTML = 'Failed to load books!';
+    }
+    searchBy = document.getElementById("search").value;
+    query = document.getElementById("searchBar").value;
+    alert(`/books?${searchBy}=${query}`);
+    xhttp.open("GET", `/books?${searchBy}=${query}`, true);
+    xhttp.send();
+    var container = document.getElementById("books");
+    container.innerHTML = '<div class="book">Loading Books!</div>';
 }
