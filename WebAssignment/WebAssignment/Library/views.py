@@ -39,8 +39,10 @@ def AddBook(request):
     return HttpResponse(template.render())
 
 def BookDetails(request):
-    template = loader.get_template('BookDetails.html')
-    return HttpResponse(template.render())
+    book = Book.objects.filter(bookId = request.GET["id"])
+    if book:
+        return render(request,"BookDetails.html",{"book":book.first(),"id":book.first().bookId})
+    return render(request,"BookDetails.html",{"book":None,"id":request.GET["id"]})
 
 def ContactUs(request):
     template = loader.get_template('ContactUs.html')
