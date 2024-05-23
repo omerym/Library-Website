@@ -67,13 +67,3 @@ def Login(request):
 def Register(request):
     template = loader.get_template('RegisterPage.html')
     return HttpResponse(template.render())
-
-def bookDetails(request):
-    book =  get_object_or_404(Book, id=book_id)
-    user_type = 'unsign'
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            user_type = 'Admin'
-        else:
-            user_type = 'User'
-    return render(request,'BookDetails.html',{'book':book,'user_type':user_type})
