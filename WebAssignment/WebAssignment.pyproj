@@ -33,7 +33,9 @@
     <Compile Include="manage.py" />
     <Compile Include="WebAssignment\Library\admin.py" />
     <Compile Include="WebAssignment\Library\apps.py" />
-    <Compile Include="WebAssignment\Library\migrations\__init__.py" />
+    <Compile Include="WebAssignment\Library\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="WebAssignment\Library\models.py" />
     <Compile Include="WebAssignment\Library\tests.py" />
     <Compile Include="WebAssignment\Library\urls.py">

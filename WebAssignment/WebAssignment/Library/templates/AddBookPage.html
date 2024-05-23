@@ -23,18 +23,19 @@
 
     </ul><br />
     <div id="contactId"></div>
-    <form>
-        <div>
-            Book Id: <input type="text" placeholder="0000000000000" name="Id" required /><br />
-            Book Name: <input type="text" placeholder="book name" name="Name" required /><br />
-            Author: <input type="text" placeholder="author" name="Author" required /><br />
-            Category: <input type="text" placeholder="category" name="Category" /><br />
-            Description:<br><textarea name="Description" maxlength="255" cols="50" rows="10"></textarea><br />
-        </div>
-        <button onclick="addBook()">Submit</button>
+    <form action="/addbook/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" />
     </form>
     {% load static %}
     <script src="{%static 'js/content.js'%}"></script>
 
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>alert("{{ message }}")</script> {% endif %}
+    {% endfor %}
+    {% endif %}
 </body>
 </html>
