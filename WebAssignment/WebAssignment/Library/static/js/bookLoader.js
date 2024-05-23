@@ -9,14 +9,26 @@ class book {
     }
 }
 function refresh() {
-    document.getElementById("searchBar").value = "";
-    var container = document.getElementById("books");
-    container.innerHTML = '';
-    for (book of getBooks()) {
-        var span = document.createElement("span");
-        span.innerHTML = getBookHtml(book);
-        container.appendChild(span);
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        books = JSON.parse(this.response)
+        var container = document.getElementById("books");
+        container.innerHTML = '';
+        for (book of books) {
+            var span = document.createElement("span");
+            span.innerHTML = getBookHtml(book);
+            container.appendChild(span);
+        }
     }
+    xhttp.onerror = function () {
+        var container = document.getElementById("books");
+        container.innerHTML = 'failed to load books!';
+    }
+    xhttp.open("GET", "/books", true);
+    xhttp.send();
+    var container = document.getElementById("books");
+    container.innerHTML = '<div class="book">Loading Books!</div>';
+    document.getElementById("searchBar").value = "";
 }
 function loadBorrowedBooks() {
     var container = document.getElementById("books");
@@ -42,19 +54,6 @@ function* getBorrowedBooks() {
     }
     for (id of x) {
         book = books.find((b) => b.id == id);
-        yield book;
-    }
-}
-function* getBooks()
-{
-    books = JSON.parse(localStorage.getItem('books'));
-    if (books == null || books.length == 0) {
-
-        books = [new book(1, 'the book', 'omer'), new book(2, 'xyz', 'ali')];
-        localStorage.setItem('books', JSON.stringify(books));
-        alert('created 2 test books');
-    }
-    for (book of books) {
         yield book;
     }
 }
@@ -102,7 +101,7 @@ function borrow() {
     localStorage.setItem('borrowedBooks', JSON.stringify(borrowedBooks));
 }
 function getBookHtml(book) {
-    return `<div onclick ="window.location.href='/bookdetails?id=${book.id}'" class="book">Name: ${book.name}<br />Author: ${book.author}<br /></div >`;
+    return `<div onclick ="window.location.href='/bookdetails?id=${book.bookId}'" class="book">Title: ${book.title}<br />Author: ${book.author}<br /></div >`;
 }
 function loadBook() {
     const id = getId();
