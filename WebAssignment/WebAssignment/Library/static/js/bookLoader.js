@@ -31,28 +31,29 @@ function refresh() {
     document.getElementById("searchBar").value = "";
 }
 function loadBorrowedBooks() {
-    var container = document.getElementById("books");
-    container.innerHTML = '';
-    for (book of getBorrowedBooks()) {
-        var span = document.createElement("span");
-        span.innerHTML = getBookHtml(book);
-        container.appendChild(span);
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        books = JSON.parse(this.response)
+        var container = document.getElementById("books");
+        container.innerHTML = '';
+        for (book of books) {
+            var span = document.createElement("span");
+            span.innerHTML = getBookHtml(book);
+            container.appendChild(span);
+        }
     }
+    xhttp.onerror = function () {
+        var container = document.getElementById("books");
+        container.innerHTML = 'failed to load books!';
+    }
+    xhttp.open("GET", "/books/borrowed", true);
+    xhttp.send();
+    var container = document.getElementById("books");
+    container.innerHTML = '<div class="book">Loading Books!</div>';
 }
 function returnBook() {
     const id = getId();
     window.location.href = `/books/return?id=${id}`;
-}
-function* getBorrowedBooks() {
-    x = JSON.parse(localStorage.getItem('borrowedBooks'));
-    books = JSON.parse(localStorage.getItem('books'));
-    if (x == null || x.length == 0) {
-        return [];
-    }
-    for (id of x) {
-        book = books.find((b) => b.id == id);
-        yield book;
-    }
 }
 function getId() {
     const params = new URLSearchParams(document.location.search);
