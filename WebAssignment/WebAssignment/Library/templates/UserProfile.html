@@ -26,24 +26,24 @@
 
     </ul><br />
     {% if request.user.is_authenticated %}
-         <div id="contactId" class="profile-container">
-             <p>username: {{user.username}}</p>
-             <p> email: {{user.email}}</p>
-             <p>user type: {% if perms.Library.admin %}admin{%else%}user{%endif%}</p>
-         </div>
+    <div id="contactId" class="profile-container">
+        <p>username: {{user.username}}</p>
+        <p> email: {{user.email}}</p>
+        <p>user type: {% if perms.Library.admin %}admin{%else%}user{%endif%}</p>
+    </div>
     <ul class="UserPrivilege">
-            {% if not perms.Library.admin %}
-            <li name="User" class="rolefunctionArea"><button onclick="loadBorrowedBooks()" class="rolefunction">Owned books</button></li>
-            {% endif %}
-            <li class="rolefunctionArea"><button class="rolefunction" onclick="window.location.href='/editprofile'">Edit profile</button></li>
-            <div class="BookList" id="books"></div>
-        </ul>
+        {% if not perms.Library.admin %}
+        <li name="User" class="rolefunctionArea"><button onclick="loadBorrowedBooks()" class="rolefunction">refresh borrowed books</button></li>
         {% endif %}
-        {% load static %}
-        <script src="{%static 'js/bookLoader.js'%}"></script>
-        {% load static %}
-        <script src="js{%static '/ProfileScript.js'%}"></script>
-        {% load static %}
-        <script src="{%static 'js/content.js'%}"></script>
+        <li class="rolefunctionArea"><button class="rolefunction" onclick="window.location.href='/editprofile'">Edit profile</button></li>
+        <div class="BookList" id="books"></div>
+    </ul>
+    {% endif %}
+    {% load static %}
+    <script src="{%static 'js/bookLoader.js'%}"></script>
+
+    {% if not perms.Library.admin %}
+    <script>loadBorrowedBooks()</script>
+    {% endif %}
 </body>
 </html>

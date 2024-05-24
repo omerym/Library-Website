@@ -55,37 +55,30 @@ def ContactUs(request):
     return render(request,'ContactUs.html')
 
 def EditBook(request):
-    if not request.user.is_authenticated or not request.user.has_perm('Library.admin'):
-        redirect('/')
+    if not request.user.has_perm('Library.admin'):
+        return redirect('/')
     if request.method == "POST":
-        #BookID=request.GET.get('id')
-        #print(f"BookID: {BookID}")
-        #if not BookID:
-            #redirect('/')
-        #else:
             form = BookForm(request.POST)
-            
-            
             if form.is_valid():
-                FormData = form.cleaned_data
-                CurrentBook = Book.objects.get(bookId=FormData['bookId'])
-                if(Book.objects.filter(bookId=FormData['bookId'])):
-                    print(f"BookID: {FormData['bookId']}")
-                    CurrentBook.title= FormData['title']
-                    CurrentBook.author=FormData['author']
-                    CurrentBook.category=FormData['category']
-                    CurrentBook.description=FormData['description']
-                    CurrentBook.save()
-                    return redirect(f"/bookdetails?id={form.cleaned_data['bookId']}")
+                formData = form.cleaned_data
+                book = Book.objects.filter(bookId=formData['bookId']).first()
+                if book:
+                    book.title= formData['title']
+                    book.author=formData['author']
+                    book.category=formData['category']
+                    book.description=formData['description']
+                    book.save()
+                    return redirect(f"/bookdetails?id={formData['bookId']}")
+                else:
+                    return redirect('/')   
             else:
-                messages.error(request, f"book does not exist")
                 return render(request,"EditBookPage.html", {"form": form})
-                
-    else:
-        form = BookForm()
-        return render(request,"EditBookPage.html", {"form": form})
-    template = loader.get_template('EditBookPage.html')
-    return HttpResponse(template.render())
+            
+    id = request.GET.get("id",None)
+    book = Book.objects.filter(bookId = id).first()
+    if id and book:
+        return render(request,"EditBookPage.html", {"book": book})
+    return redirect('/')
 
 def EditProfile(request):
     if not request.user.is_authenticated or not request.user.has_perm('Library.admin'):
@@ -218,6 +211,13 @@ def Return(request):
     book.borrowedBy = None
     book.save()
     return redirect(f'/bookdetails?id={id}')
+
+def Remove(request):
+    id = request.GET.get("id",None)
+    book = Book.objects.filter(bookId = id)
+    if request.user.has_perm('Library.admin') and  id and book:
+        book.delete()
+    return redirect('/')
 
 def GetAdminPermission():
     p = Permission.objects.filter(codename='admin').first()

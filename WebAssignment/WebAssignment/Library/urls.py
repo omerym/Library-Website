@@ -16,6 +16,7 @@ urlpatterns = [
     path('books/borrowed/', views.GetBorrowedBooks, name='GetBorrowedBooks'),
     path('books/borrow/', views.Borrow, name='Borrow'),
     path('books/return/', views.Return, name='Return'),
+    path('books/remove/', views.Remove, name='Remove'),
 
 ]
 

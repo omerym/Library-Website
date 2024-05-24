@@ -63,16 +63,7 @@ function getId() {
 function remove() {
 
     const id = getId();
-    books = JSON.parse(localStorage.getItem('books'));
-    if (books == null || books.length == 0) return;
-    for (i = 0; i < books.length; i++) {
-        const b = books[i];
-        if (b.id == id) {
-            books.splice(i,1);
-        }
-    }
-    localStorage.setItem('books', JSON.stringify(books));
-    window.location.href = '.';
+    window.location.href = `/books/remove?id=${id}`;
 }
 function goToEdit() {
 
