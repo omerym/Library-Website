@@ -112,3 +112,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# add your credentials to test it, for gmail you'll have to get an app password from security tab under settings
+EMAIL_HOST_USER = '-----------'
+EMAIL_HOST_PASSWORD = '----------'
+DEFAULT_FROM_EMAIL = '------------'

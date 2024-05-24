@@ -14,6 +14,9 @@ from django.contrib.auth.models import Permission, User
 from django.contrib.contenttypes.models import ContentType
 from .forms import BookForm
 from .forms import UserForm
+from .forms import MailForm
+from django.core.mail import send_mail
+
 
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -52,7 +55,28 @@ def BookDetails(request):
     return render(request,"BookDetails.html",{"book":None,"id":request.GET["id"]})
 
 def ContactUs(request):
-    return render(request,'ContactUs.html')
+    if not request.user.is_authenticated or not request.user.has_perm('Library.admin'):
+        redirect('/')
+    if request.method == "POST":
+            form = MailForm(request.POST)
+            if form.is_valid():
+                FormData = form.cleaned_data
+                if(User.objects.filter(email=FormData["email"])):
+                        subject="Library app"
+                        mail=FormData["message"] 
+                        phone=FormData['phone']
+                        message=mail+phone
+                        email_from=FormData["email"]
+                        email_to=["sd.omar04@gmail.com"]
+                        send_mail(subject,message,email_from,email_to)
+                else:
+                    return render(request,"landingPage.html", {"form": form})
+                
+    else:
+        form = MailForm()
+        return render(request,"ContactUs.html", {"form": form})
+    template = loader.get_template('ContactUs.html')
+    return HttpResponse(template.render())
 
 def EditBook(request):
     if not request.user.has_perm('Library.admin'):

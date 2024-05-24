@@ -82,7 +82,8 @@
                 </h1>
 
 
-                <form action="" method="post">
+                <form action="/contactus/" method="post">
+                    {% csrf_token %}
 
                     <label for="first_name">First Name:</label>
                     <br>
@@ -95,7 +96,7 @@
                     <br><br>
                     <label for="email">Email:</label>
                     <br><br>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <input type="email" id="email" name="email" value="{{ user.email }}" required>
                     <br><br>
 
                     <label for="phone">Phone Number:</label>
