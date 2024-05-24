@@ -13,6 +13,7 @@ from WebAssignment.Library.models import Book
 from django.contrib.auth.models import Permission, User
 from django.contrib.contenttypes.models import ContentType
 from .forms import BookForm
+from .forms import UserForm
 
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -87,9 +88,28 @@ def EditBook(request):
     return HttpResponse(template.render())
 
 def EditProfile(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated or not request.user.has_perm('Library.admin'):
         redirect('/')
-    return render(request,'EditProfile.html')
+    if request.method == "POST":
+            form = UserForm(request.POST)
+            if form.is_valid():
+                FormData = form.cleaned_data
+                if(User.objects.filter(username=FormData["currentuser"])):
+                    CurrentUser = User.objects.get(username=FormData["currentuser"])
+                    CurrentUser.set_password(FormData['password'])
+                    CurrentUser.email=FormData['email']
+                    CurrentUser.username= FormData['username']
+                    CurrentUser.save()
+                    return redirect(f"/login/")
+            else:
+                messages.error(request, f"user does not exist")
+                return render(request,"EditProfile.html", {"form": form})
+                
+    else:
+        form = BookForm()
+        return render(request,"EditProfile.html", {"form": form})
+    template = loader.get_template('EditProfile.html')
+    return HttpResponse(template.render())
 
 def UserProfile(request):
     if not request.user.is_authenticated:

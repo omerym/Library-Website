@@ -26,15 +26,20 @@
     {% if request.user.is_authenticated %}
     <div id="contactId"></div>
     {% load static %}
-    <img src="{%static 'css/images/NoProfile.png'%}" alt="user profile pic">
-    <p class="edit">New Profile Picture</p>
-    <input type="file" class="directory" />
-    <p class="username">New User Name</p>
-    <textarea class="info" rows="1" cols="20"></textarea>
-    <p class="username">New Password</p>
-    <textarea class="info" rows="1" cols="20"></textarea>
-    <div class="descriptionArea"><textarea class="description" rows="4" cols="50"></textarea></div>
-    <button class="confirmation" onclick="window.location.href='/user'">Confirm</button>
+    <form action="/editprofile/" method="post">
+        {% csrf_token %}
+        <div id="contactId"></div>
+        <input type="hidden" id="currentuser" name="currentuser" value="{{ user.username }}"/>
+        <h1 id="by"> username </h1>
+        <input type="username" id="username" name="username" value="{{ user.username }}"/>
+        <h1 id="by"> password </h1>
+        <input type="text" id="password" name="password"/>
+        <h1 id="by"> email</h1>
+        <input type="email" id="email" name="email" value="{{ user.email }}"/>
+        <input type="submit" />
+
+    </form>
+    
     {% endif %}
     {% load static %}
     <script src="{%static 'js/content.js'%}"></script>
