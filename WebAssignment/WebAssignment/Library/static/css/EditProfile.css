@@ -51,3 +51,7 @@ button.confirmation:hover {
     background-color: #697f99;
     transition: 0.3s;
 }
+#by
+{
+    padding-left: 10px;
+}
